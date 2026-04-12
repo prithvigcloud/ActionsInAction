@@ -4,6 +4,18 @@ on:
     branches:
       - main
   workflow_dispatch:   
+    inputs:
+      homedrive:
+        description: 'The home drive on the machine'
+        required: true
+      loglevel:
+        description: 'Log level'
+        default: 'warning' 
+        type: choice
+        options:
+          - info
+          - warning
+          - debug 
 
 jobs:
   MyFirstJob: 
