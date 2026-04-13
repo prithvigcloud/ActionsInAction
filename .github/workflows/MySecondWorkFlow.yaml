@@ -30,7 +30,19 @@ jobs:
       - uses: actions/setup-node@v3.6.0
         with:
           node-version: ${{ matrix.node_version }}
-        
+
+  job_3:
+    runs-on: ubuntu-latest
+    steps:
+      - id: set-as-secret
+        name: Generate, mask and output of secret
+        run: |
+          the_secret=$((RANDOM))
+          echo "::add-mask::$the_secret
+          echo "secret-number=$the_secret" >> "$GITHUB_OUTPUT
+      - name: Use the secret output (protected by a mask)
+        run: |
+          echo "the secret number is ${{ steps.set-as-secret.outputs.secret-number }}
       
          
   
