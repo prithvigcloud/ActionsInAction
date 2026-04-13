@@ -1,0 +1,34 @@
+name: build and push image to ECR
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: <role_arn>
+          aws-region: us-east-1
+          audience: sts.amazonaws.com
+
+      - name: Login to ECR
+        uses: aws-actions/amazon-ecr-login@v2
+
+      - name: Build and Push Docker Image
+        run: |
+          IMAGE_URI={{ $ACCOUNT_ID }}.dkr.ecr.us-east1-amazonaws.com/my-app:{{ github.sha }}
+          docker build -t $IMAGE_URI .
+          docker push $IMAGE_URI
+          
+        
+          
+          
+        
+        
