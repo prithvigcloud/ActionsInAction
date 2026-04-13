@@ -42,7 +42,7 @@ jobs:
           echo "secret-number=$the_secret" >> "$GITHUB_OUTPUT
       - name: Use the secret output (protected by a mask)
         run: |
-          echo "the secret number is ${{ steps.set-as-secret.outputs.secret-number }}
+          echo "the secret number is ${{ steps.set-as-secret.outputs.secret-number }}"
       
          
   
