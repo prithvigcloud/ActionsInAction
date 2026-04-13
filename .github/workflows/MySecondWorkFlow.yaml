@@ -1,0 +1,36 @@
+name: My Second work flow
+on: 
+  push:
+    branches:
+      - main
+  workflow_dispatch: 
+jobs:
+  job_1:
+    runs-on: ubuntu-latest
+    steps:
+      - name: invite
+        run: echo "Hi my second work flow"
+      - name: Clean install dependencies and build
+        run: |
+          npm install
+          npm run build
+        working-directory: ./temp
+        shell: bash
+
+  job_2:
+    strategy:
+      fail-fast: false
+      max-parallel: 3
+      matrix:
+        os_version: [macos-latest, ubuntu-latest]
+        node_version: [12, 14, 16]
+    name: My second Job
+    runs-on: ${{ matrix.os_version }}
+    steps:
+      - uses: actions/setup-node@v.3.6.0
+        with:
+          node-version: ${{ matrix.node_version }}
+        
+      
+         
+  
