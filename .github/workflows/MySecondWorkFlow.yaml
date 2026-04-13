@@ -27,7 +27,7 @@ jobs:
     name: My second Job
     runs-on: ${{ matrix.os_version }}
     steps:
-      - uses: actions/setup-node@v.3.6.0
+      - uses: actions/setup-node@v3.6.0
         with:
           node-version: ${{ matrix.node_version }}
         
