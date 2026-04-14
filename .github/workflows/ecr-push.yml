@@ -22,7 +22,7 @@ jobs:
           audience: sts.amazonaws.com
 
       - name: Login to ECR
-        uses: aws-actions/amazon-ecr-login@v
+        uses: aws-actions/amazon-ecr-login@v2
 
       - name: Build and Push Docker Image
         run: |
