@@ -22,11 +22,11 @@ jobs:
           audience: sts.amazonaws.com
 
       - name: Login to ECR
-        uses: aws-actions/amazon-ecr-login@v2
+        uses: aws-actions/amazon-ecr-login@v
 
       - name: Build and Push Docker Image
         run: |
-          IMAGE_URI=093984136187.dkr.ecr.us-east1-amazonaws.com/my-app:one
+          IMAGE_URI=093984136187.dkr.ecr.us-east-1-amazonaws.com/my-app:one
           docker build -t $IMAGE_URI .
           docker push $IMAGE_URI
           
